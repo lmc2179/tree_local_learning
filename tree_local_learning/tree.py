@@ -21,7 +21,6 @@ class TreeLocalLearnerRegressor(object):
         for p in self.partitions:
             m = deepcopy(self.base_model)
             m.fit(X[row_partition_lookup[p]], y[row_partition_lookup[p]])
-            print(row_partition_lookup)
             self.partition_models[p] = m
     
     def predict(self, X):
@@ -31,5 +30,3 @@ class TreeLocalLearnerRegressor(object):
         
     def _predict_one(self, row, partition):
         return self.partition_models[partition].predict(np.array(row))[0]
-        
-
